@@ -62,6 +62,60 @@ router.get('/dogs', async (req, res) =>{
 })
 
 
+router.get('/temperament', async (req, res) =>{
+    const temperamentsApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const temperamentsArray = temperamentsApi.data.map(e => e.temperament)
+    const occEach = temperamentsArray.toString().split(', ').flat()
+    const occEach2 = occEach.toString().split(',').flat()
+    occEach2.forEach(e => {
+        Temperament.findOrCreate({
+            where: {name: e}
+        })
+    })
+    const allTemperaments = await Temperament.findAll();
+    res.send(allTemperaments); 
+    })
 
+
+    router.post('/dog', async (req, res) => {
+        let {
+            name,
+            height,
+            weight,
+            life_span,
+            createdInDb,
+            temperament
+        } = req.body
+    
+        const createdDog = await Dog.create({
+            name,
+            height,
+            weight,
+            life_span,
+            createdInDb
+        })
+    
+        let temperamentDb = await Temperament.findAll({
+            where: {
+                name: temperament
+            }
+        })
+        createdDog.addTemperament(temperamentDb)
+        return res.send('Raza creada con éxito')
+    });
+
+
+    router.get('/dogs/:id', async (req, res) =>{
+        const id = req.params.id;
+        const dogsTotal = await getAllDogs()
+        if(id){
+            let dogId = await dogsTotal.filter( e => e.id == id)
+            dogId.length?
+            res.status(200).json(dogId) :
+            res.status(404).send('No se encontró esa Raza')
+        }
+    })
+
+ 
 
 module.exports = router;
