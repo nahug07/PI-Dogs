@@ -1,0 +1,248 @@
+.conteinerMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.c4 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.c2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 3px solid transparent;
+  margin-top: 10px;
+  height: 68px;
+  padding: 9px 20px;
+  background-color: rgba(0, 0, 0, 0.356);
+  backdrop-filter: blur(15px);
+  border-radius: 15px 0 0 15px;
+}
+
+.c3 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  padding: 10px;
+}
+
+.cSearch {
+  display: flex;
+  align-items: center;
+}
+
+.filtros {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-around;
+  padding: 5px;
+}
+
+.filtros1 {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.356);
+  backdrop-filter: blur(15px);
+  margin-top: 0;
+  padding: 12px 20px;
+  border-radius: 15px 0 0 15px;
+}
+
+.filtros1 h2 {
+  margin: 0;
+  color: #66fcf1;
+  text-shadow: -2px -2px 2px #000000, 2px -2px 2px #000000, -2px 2px 2px #000000,
+    2px 2px 2px #000000;
+}
+
+.ordenamiento {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-around;
+  padding: 5px;
+}
+
+.ordenamiento1 {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.356);
+  backdrop-filter: blur(15px);
+  margin-top: 0;
+  padding: 12px 20px;
+  border-radius: 0 15px 15px 0;
+}
+
+.ordenamiento1 h2 {
+  margin: 0;
+  color: #66fcf1;
+  text-shadow: -2px -2px 2px #000000, 2px -2px 2px #000000, -2px 2px 2px #000000,
+    2px 2px 2px #000000;
+}
+
+.c5 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  padding: 10px;
+}
+
+.hpfilter1 {
+  font-size: 16px;
+  border: 1px solid black;
+  height: auto;
+  background-color: wheat;
+  cursor: grab;
+  border-radius: 25px 0 0 25px;
+  text-align: center;
+  padding: 2px;
+  transition-duration: 0.4s;
+}
+
+.hpfilter2:hover,
+.hpfilter1:hover {
+  background-color: #54c4bc;
+  -webkit-box-shadow: 4px 4px 6px darkslategrey;
+  box-shadow: 4px 4px 6px darkslategrey;
+}
+
+.hpfilter2 {
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid black;
+  height: auto;
+  background-color: wheat;
+  cursor: grab;
+  border-radius: 0 25px 25px 0;
+  padding: 2px;
+  transition-duration: 0.4s;
+}
+
+.hpbot1 {
+  background-color: darkslategrey;
+  color: #66fcf1;
+  padding-top: 1px;
+  cursor: pointer;
+  text-align: center;
+  height: auto;
+  padding: 12px 26px;
+  transition-duration: 0.8s;
+  border-radius: 25px 0 0 25px;
+}
+.hpbot2 {
+  background-color: darkslategrey;
+  color: #66fcf1;
+  padding-top: 1px;
+  cursor: pointer;
+  text-align: center;
+  height: auto;
+  padding: 12px 26px;
+  transition-duration: 0.8s;
+  border-radius: 0 25px 25px 0;
+}
+
+.hpbot1:hover,
+.hpbot2:hover {
+  background-color: #54c4bc;
+  color: black;
+  -webkit-box-shadow: 4px 4px 6px darkslategrey;
+  box-shadow: 4px 4px 6px darkslategrey;
+}
+
+.conteinerMain1 {
+  margin: 0;
+  width: auto;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.356);
+  backdrop-filter: blur(15px);
+}
+
+.conteinerMain1 h1 {
+  margin: 0;
+  color: #66fcf1;
+  text-shadow: -2px -2px 2px #000000, 2px -2px 2px #000000, -2px 2px 2px #000000,
+    2px 2px 2px #000000;
+}
+
+.hpbot1 a {
+  text-decoration: none;
+  color: #66fcf1;
+}
+
+.hpbot1:hover a {
+  text-decoration: none;
+  color: black;
+}
+
+.ppal {
+  height: 100vh;
+  margin-bottom: 0;
+  width: 100vw;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.356);
+  backdrop-filter: blur(15px);
+  padding: 4px 20px;
+  text-align: center;
+  color: #66fcf1;
+}
+footer span a {
+  color: #66fcf1;
+  text-decoration: none;
+}
+footer span a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 543px) {
+  .filtros1 {
+    margin-bottom: 10px;
+    border-radius: 15px;
+  }
+  .ordenamiento1 {
+    border-radius: 15px;
+  }
+  .c5 {
+    padding: 0;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 673px) {
+  .c2 {
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+  .cSearch {
+    border-radius: 15px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1197px) {
+  .c2 {
+    margin-top: 0px;
+  }
+}

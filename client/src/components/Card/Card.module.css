@@ -1,0 +1,131 @@
+.conteinerCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-around;
+  padding: 10px;
+  margin: 0;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.8s;
+}
+
+img {
+  width: 400px;
+  height: 300px;
+}
+
+.content {
+  position: absolute;
+  bottom: -120px;
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  flex-direction: column;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: 0.5s;
+}
+
+.card:hover .content {
+  bottom: 0px;
+}
+
+.contentBx h3 {
+  text-align: center;
+  color: #66fcf1;
+
+  text-shadow: -2px -2px 2px #000000, 2px -2px 2px #000000, -2px 2px 2px #000000,
+    2px 2px 2px #000000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.1em;
+}
+
+.card .contentBx h5 {
+  color: #66fcf1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0 0 20px 5px;
+  line-height: 1.1em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(-30px);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: initial;
+  transition-delay: 0.4s;
+  text-shadow: -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000,
+    1px 1px 1px #000000;
+}
+
+.card .contentBx p {
+  color: #66fcf1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0 0 0px 5px;
+  line-height: 1.1em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(-30px);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: initial;
+  transition-delay: 0.6s;
+  text-shadow: -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000,
+    1px 1px 1px #000000;
+}
+
+.card:hover .contentBx h5 {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.card:hover .contentBx p {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.card:hover {
+  -webkit-box-shadow: 8px 8px 12px darkslategrey;
+  box-shadow: 8px 8px 12px darkslategrey;
+}
+
+.contentBx {
+  height: 100%;
+}
+
+/* Responsive */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  img {
+    width: 350px;
+    height: 250px;
+  }
+  .card {
+    width: 350px;
+    height: 250px;
+    margin: 0;
+  }
+}

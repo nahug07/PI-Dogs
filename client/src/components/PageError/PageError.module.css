@@ -1,0 +1,64 @@
+.divPageError {
+  background-image: url(https://static9.depositphotos.com/1594920/1087/i/600/depositphotos_10878916-stock-photo-dogue-de-bordeaux-puppy-10.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+.divPageError h1 {
+  font-size: 80px;
+  margin: 0;
+}
+
+.divPageError h3 {
+  color: black;
+  margin-top: 0;
+  font-size: 30px;
+}
+
+.btnVolverr {
+  background-color: darkslategrey;
+  color: #66fcf1;
+  padding-top: 1px;
+  cursor: pointer;
+  text-align: center;
+  height: 60px;
+  padding: 12px 26px;
+  transition-duration: 0.4s;
+  border-radius: 25px 25px;
+}
+
+.btnVolverr:hover {
+  background-color: #54c4bc;
+  color: black;
+  -webkit-box-shadow: 4px 4px 6px darkslategrey;
+  box-shadow: 4px 4px 6px darkslategrey;
+}
+
+/* Responsive */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 516px) {
+  .divPageError h1 {
+    font-size: 30px;
+    margin: 0;
+  }
+  .divPageError h3 {
+    color: black;
+    margin-top: 0;
+    font-size: 20px;
+  }
+  .btnVolverr {
+    margin-top: 70vh;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 673px) {
+  .divPageError h1 {
+    font-size: 60px;
+    margin: 0;
+  }
+}

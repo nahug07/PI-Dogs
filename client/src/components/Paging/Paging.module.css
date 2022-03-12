@@ -1,0 +1,42 @@
+.paginado {
+  list-style-type: none;
+  cursor: pointer;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.number {
+  padding: 2px;
+  display: inline-block;
+}
+
+.number button {
+  height: 30px;
+  width: 30px;
+  background-color: darkslategrey;
+  padding: 2px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition-duration: 0.6s;
+  border: 1px solid #66fcf1;
+  color: #66fcf1;
+  cursor: pointer;
+}
+
+.number button:hover {
+  background-color: #66fcf1;
+  color: black;
+  transform: scale(1.15);
+  transition: all 0.2s;
+}
+
+h3 {
+  color: #66fcf1;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 673px) {
+  .paginado {
+    padding: 0;
+  }
+}

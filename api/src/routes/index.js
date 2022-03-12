@@ -19,9 +19,9 @@ const getApiInfo = async () => {
             id: e.id,
             image: e.image.url,
             temperament: e.temperament,
-            weight: e.weight.metric,    /* peso */
+            weight: e.weight.metric,   
             height: e.height.metric,
-            life_span: e.life_span,   /* años de vida */
+            life_span: e.life_span,  
         }
     });
     return ApiInfo
@@ -55,7 +55,7 @@ router.get('/dogs', async (req, res) =>{
         let dogName = await dogsTotal.filter( e => e.name.toLowerCase().includes(name.toLowerCase()))
         dogName.length ?
         res.status(200).send(dogName) :
-        res.status(404).send('No se encontró la raza')
+        res.status(404).send('Dog not found')
     } else {
         res.status(200).send(dogsTotal)
     }
@@ -63,45 +63,40 @@ router.get('/dogs', async (req, res) =>{
 
 
 router.get('/temperament', async (req, res) =>{
-    const temperamentsApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-    const temperamentsArray = temperamentsApi.data.map(e => e.temperament)
-    const occEach = temperamentsArray.toString().split(', ').flat()
-    const occEach2 = occEach.toString().split(',').flat()
-    occEach2.forEach(e => {
-        Temperament.findOrCreate({
-            where: {name: e}
-        })
-    })
+    const temperamentsApi = (await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data
+    let temperaments = temperamentsApi.map((ob) => ob.temperament);
+        temperaments = temperaments.join().split(",");
+        temperaments = temperaments.filter (ob => ob)
+        temperaments = [...new Set (temperaments)].sort();                          
+        temperaments.forEach((ob) => {   
+          Temperament.findOrCreate({    
+            where: { name: ob },        
+          });
+        });
     const allTemperaments = await Temperament.findAll();
     res.send(allTemperaments); 
     })
 
 
-    router.post('/dog', async (req, res) => {
-        let {
-            name,
-            height,
-            weight,
-            life_span,
-            createdInDb,
-            temperament
-        } = req.body
-    
-        const createdDog = await Dog.create({
-            name,
-            height,
-            weight,
-            life_span,
-            createdInDb
-        })
-    
-        let temperamentDb = await Temperament.findAll({
-            where: {
-                name: temperament
-            }
-        })
-        createdDog.addTemperament(temperamentDb)
-        return res.send('Raza creada con éxito')
+    router.post("/dog", async (req, res, next) => {
+        try {
+            const { name, height, weight, life_span, image, createdInDb, temperament} = req.body;    
+            const newDog = await Dog.create({   
+                name, 
+                height, 
+                weight, 
+                life_span, 
+                image, 
+                createdInDb
+            })
+            let temperamentDb = await Temperament.findAll({ 
+                where: { name : temperament}   
+            })
+            await newDog.addTemperament(temperamentDb) 
+            res.status(201).send({ info: "Dog created successfully!" })
+        } catch (error) {
+            next(error)
+        };
     });
 
 
@@ -112,7 +107,7 @@ router.get('/temperament', async (req, res) =>{
             let dogId = await dogsTotal.filter( e => e.id == id)
             dogId.length?
             res.status(200).json(dogId) :
-            res.status(404).send('No se encontró esa Raza')
+            res.status(404).send('Dog not found')
         }
     })
 
