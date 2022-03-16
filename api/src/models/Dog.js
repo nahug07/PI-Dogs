@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUID, 
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
+      allowNull: false, //no te permito que este vacio
+      primaryKey: true //va a ser la clave primaria
     },
     name: {
       type: DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     createdInDb: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.BOOLEAN,  //todos los que yo cree van a tener esta propiedad
       allowNull: false,
       defaultValue: true,
     }

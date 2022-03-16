@@ -1,15 +1,15 @@
 const initialState = {
   dogs : [],
-  allDogs : [],   
-  orderDogs : [],        
+  allDogs : [],     //declaro un estado inicial, defino los valores que voy a querer
+  sortedArr : [],        
   weightDogs : [], 
   temperaments : [],    
   detail : [],         
-};
-
+};                           //recibe parametro state, copia de mi estado inicial
+                            //                //esta va a ser la accion que se despache
 function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case "GET_DOGS":
+  switch (action.type) {     //segun el type de la accion es lo que va a ir haciendo
+    case "GET_DOGS":        //cada accion que se dispare va a modificar al estado de diferente forma
       return {
         ...state,
         dogs: action.payload,
@@ -51,7 +51,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case "ORDER_BY_NAME":
-      let sortedArr =
+      const sortedArr =
         action.payload === "asc"
           ? state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
@@ -77,20 +77,20 @@ function rootReducer(state = initialState, action) {
       };
 
     case "ORDER_BY_WEIGHT":
-      let weightFiltered = [...state.dogs]
+      const weightDogs = state.dogs
       if(action.payload === "PesoAsc") {
-        weightFiltered.sort((a, b) => {                        
+        weightDogs.sort((a, b) => {                        
               return parseInt(a.weight) - parseInt(b.weight);
           });
       } 
       if(action.payload === "PesoDesc") {
-        weightFiltered.sort((a, b) => {                        
+        weightDogs.sort((a, b) => {                        
               return parseInt(b.weight) - parseInt(a.weight);
           });
     }
     return {
       ...state,
-      dogs: weightFiltered,
+      dogs: weightDogs,
     };
 
     case "GET_NAME_DOGS":
@@ -103,6 +103,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+      case "GET_DELETE_DETAIL":
+        return{
+          ...state,
+          detail: []
+        };
 
     case "GET_DETAIL":
       return {

@@ -10,12 +10,12 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-
-const getApiInfo = async () => {
+                                   
+const getApiInfo = async () => { 
     const ApiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
     const ApiInfo = await ApiUrl.data.map(e => {
         return {
-            name: e.name,
+            name: e.name,  //guardo solo lo que necesito de la api
             id: e.id,
             image: e.image.url,
             temperament: e.temperament,
@@ -28,9 +28,9 @@ const getApiInfo = async () => {
 };
 
 const getDbInfo = async () => {
-    return await Dog.findAll({
-        include: {
-            model: Temperament,
+    return await Dog.findAll({  //traeme todos los perros y ademas
+        include: {              // incluime el modelo temperament
+            model: Temperament, //y de ese modelo, traeme el nombre
             attributes: ['name'],
             through: {
                 attributes: [],
@@ -49,7 +49,7 @@ const getAllDogs = async () => {
 // --> Routes <-- //
 
 router.get('/dogs', async (req, res) =>{
-    const name = req.query.name;
+    const name = req.query.name; //me fijo si hay un query con esa propiedad
     let dogsTotal = await getAllDogs();
     if (name) {
         let dogName = await dogsTotal.filter( e => e.name.toLowerCase().includes(name.toLowerCase()))
@@ -65,11 +65,11 @@ router.get('/dogs', async (req, res) =>{
 router.get('/temperament', async (req, res) =>{
     const temperamentsApi = (await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data
     let temperaments = temperamentsApi.map((ob) => ob.temperament);
-        temperaments = temperaments.join().split(",");
-        temperaments = temperaments.filter (ob => ob)
-        temperaments = [...new Set (temperaments)].sort();                          
-        temperaments.forEach((ob) => {   
-          Temperament.findOrCreate({    
+        temperaments = temperaments.join().split(","); //.join une todos .split los separa con ,
+        temperaments = temperaments.filter (ob => ob) //esto evita que me quede uno en blanco
+        temperaments = [...new Set (temperaments)].sort(); //con el constructor Set solo dejo los valores sin repetir y los ordeno                         
+        temperaments.forEach((ob) => {   //una vez por cada elemento
+          Temperament.findOrCreate({    //busca la entrada y si no esta, la crea
             where: { name: ob },        
           });
         });
@@ -78,25 +78,29 @@ router.get('/temperament', async (req, res) =>{
     })
 
 
-    router.post("/dog", async (req, res, next) => {
-        try {
-            const { name, height, weight, life_span, image, createdInDb, temperament} = req.body;    
-            const newDog = await Dog.create({   
-                name, 
-                height, 
-                weight, 
-                life_span, 
-                image, 
-                createdInDb
-            })
-            let temperamentDb = await Temperament.findAll({ 
-                where: { name : temperament}   
-            })
-            await newDog.addTemperament(temperamentDb) 
-            res.status(201).send({ info: "Dog created successfully!" })
-        } catch (error) {
-            next(error)
-        };
+router.post("/dog", async (req, res) => {
+    const { 
+        name,
+        height, 
+        weight, 
+        life_span, //pido esto por body
+        image,
+        createdInDb, 
+        temperament
+    } = req.body;    
+    const newDog = await Dog.create({   
+        name, 
+        height, 
+        weight, //creo el nuevo perro
+        life_span, 
+        image, 
+        createdInDb
+    })
+    let temperamentDb = await Temperament.findAll({ //tengo que hacer la relacion aparte
+            where: { name : temperament}   //los temp los tengo que buscar en el modelo
+        })
+    await newDog.addTemperament(temperamentDb) 
+    res.status(201).send({ info: "Dog created successfully!" })
     });
 
 

@@ -24,9 +24,9 @@ export function getTemperaments() {
 export function postDog(payload) {
   return async function (dispatch) {
     var doggy = await axios.post("http://localhost:3001/dog", payload);
-    return doggy
-}}
-
+    return doggy;
+  };
+}
 
 export function filterDogTemp(payload) {
   return {
@@ -36,58 +36,58 @@ export function filterDogTemp(payload) {
 }
 
 export function filterCreated(payload) {
-    return {
-        type: 'FILTER_CREATED',
-        payload
-    }
+  return {
+    type: "FILTER_CREATED",
+    payload,
+  };
 }
 
 export function orderByName(payload) {
-    return {
-      type: "ORDER_BY_NAME",
-      payload,
-    };
-  }
+  return {
+    type: "ORDER_BY_NAME",
+    payload,
+  };
+}
 
-  export function orderbyWeight(payload) {
-    return {
-        type: "ORDER_BY_WEIGHT",
-        payload
-    }
-};
+export function orderbyWeight(payload) {
+  return {
+    type: "ORDER_BY_WEIGHT",
+    payload,
+  };
+}
 
 export function getNameDogs(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/dogs?name=" + name  
-      );
+      var json = await axios.get("http://localhost:3001/dogs?name=" + name);
       return dispatch({
         type: "GET_NAME_DOGS",
-        payload: json.data, 
+        payload: json.data,
       });
     } catch (error) {
       console.log(error);
-      alert('Dog not found')
+      alert("Dog not found");
     }
   };
 }
 
 export default function getDetail(id) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/dogs/" + id)
+      var json = await axios.get("http://localhost:3001/dogs/" + id);
       return dispatch({
         type: "GET_DETAIL",
-        payload: json.data
-      })
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Dog not found");
     }
-    catch(error){
-      console.log(error)
-      alert('Dog not found')
-    }
-  }
-} 
+  };
+}
 
-
-
+export function getDeleteDetail() {
+  return {
+    type: "GET_DELETE_DETAIL",
+  };
+}

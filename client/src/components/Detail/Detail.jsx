@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import getDetail from "../../actions";
 import { useEffect } from "react";
 import stl from "./Detail.module.css";
+import {getDeleteDetail} from "../../actions";
 
 export default function Detail(props) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getDetail(props.match.params.id));
+  useEffect(() => {                                   /* const { id } = useParams(); Podria usar el hook también*/ 
+    dispatch(getDetail(props.match.params.id)); 
+        return function (){
+          dispatch(getDeleteDetail())
+        }                                           //accedo al id pasandole props a mi componente Detail
   }, [dispatch, props.match.params.id]);
 
-  const myDog = useSelector((state) => state.detail);
+  const myDog = useSelector((state) => state.detail);   // me traigo el estado detail desde el reducer con useSelector
 
   return (
     <div className={stl.conteinerDetail}>
@@ -45,6 +49,7 @@ export default function Detail(props) {
             </div>
           </div>
         ) : (
+          /* <h1>Loading..</h1> */
           <div className={stl.woorupape2}>
             <div className={stl.fouGif2}>
               <div className={stl.spinnerr}></div>

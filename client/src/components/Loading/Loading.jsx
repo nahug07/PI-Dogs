@@ -11,7 +11,7 @@ export default function LoadingScreen({ setLoading }) {
         <div className={stl.time}>
           {setTimeout(() => {
             setLoading(false);
-          }, 2500)}
+          }, 2000)}
         </div>
       </div>
     </>

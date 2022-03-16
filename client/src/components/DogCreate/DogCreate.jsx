@@ -7,7 +7,7 @@ import stl from "./DogCreate.module.css";
 
 function validate(input) {
   let errors = {};
-  if (!input.name) {
+  if (!input.name) { //si en mi estado local.name no hay nada
     errors.name = "Name is required";
   } else if (input.name.charAt(0) !== input.name.charAt(0).toUpperCase()) {
     errors.name = "The first letter must be uppercase";
@@ -137,7 +137,7 @@ export default function CreateDog() {
     setTemps([]);
     history.push("/home");
   }
-
+                   
   return (
     <div className={stl.bkg}>
       <div className={stl.container}>
@@ -147,7 +147,7 @@ export default function CreateDog() {
           id="DoNotSubmit"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div>
+          <div> 
             <label>Name: </label>
             <input
               id="name1"
